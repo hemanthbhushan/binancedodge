@@ -7,9 +7,15 @@ const FetchBalance = () => {
   const [account, setAccount] = useState(null);
   const [connButtonText, setConnButtonText] = useState("Connect Wallet");
   const [balance, setBalance] = useState("Balance");
-  const [connected, setConnected] = useState(true);
+
   const [networkID, setNetworkID] = useState("netWorkID");
   const [networkName, setNetworkName] = useState("netWorkName");
+  const [post, setpost] = useState({
+    userAddress: "",
+    nativeCoinBalance: "",
+    chainId: "",
+    networkName: "",
+  });
   const connectWalletHandler = async () => {
     try {
       if (window.ethereum && window.ethereum.isMetaMask) {
@@ -25,7 +31,6 @@ const FetchBalance = () => {
               )}`
             : ""
         );
-        setConnected(true);
 
         balanceHandler();
       } else {
@@ -58,11 +63,13 @@ const FetchBalance = () => {
       const name = network.name;
 
       setNetworkID(id.toString());
-      if (id.toString() === "2000") {
-        setNetworkName("DOGECHAIN");
-      }
 
-      setNetworkName(name.toUpperCase());
+      id.toString() === "2000"
+        ? setNetworkName("DOGECHAIN")
+        : setNetworkName(name.toUpperCase());
+      // if (id.toString() ==2000){ setNetworkName("DOGECHAIN");
+
+      // setNetworkName(name.toUpperCase());
     } catch (error) {
       console.log(error);
     }
