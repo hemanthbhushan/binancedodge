@@ -1,12 +1,13 @@
-import React from 'react'
-import FetchBalance from './components/FetchBalance'
+import React from "react";
+import FetchBalance from "./components/FetchBalance";
 
 const App = () => {
   return (
     <div>
-      <FetchBalance/>
+      <FetchBalance />
+      {/* <FetchBalanceV2/> */}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
