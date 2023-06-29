@@ -5,7 +5,6 @@ const App = () => {
   return (
     <div>
       <FetchBalance />
-      {/* <FetchBalanceV2/> */}
     </div>
   );
 };

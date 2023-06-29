@@ -5,11 +5,11 @@ import "./FetchBalance.css";
 import axios from "axios";
 
 const FetchBalance = () => {
-  const serverUrl = "";
+  const serverUrl = " http://localhost:5000/userInformation";
   const [account, setAccount] = useState(null);
   const [connButtonText, setConnButtonText] = useState("Connect Wallet");
   const [balance, setBalance] = useState("Balance");
-
+  const [response, setResponse] = useState("");
   const [networkID, setNetworkID] = useState("netWorkID");
   const [networkName, setNetworkName] = useState("netWorkName");
   // const [post, setpost] = useState({
@@ -83,14 +83,14 @@ const FetchBalance = () => {
   const makeAPIRequest = () => {
     const postData = {
       userAddress: account,
-      nativeCoinBalance: connButtonText,
+      nativeCoinBalance: balance,
       chainId: networkID,
       networkName: networkName,
     };
 
     axios
       .post(serverUrl, postData)
-      .then((response) => console.log(response))
+      .then((response) => setResponse(response.status))
       .catch((error) => console.log(error));
   };
 
@@ -144,6 +144,12 @@ const FetchBalance = () => {
                 </li>
               </>
             </ul>
+            Response:
+            {response == 200 ? (
+              <div className="nav-links">{`Success${response}`}</div>
+            ) : (
+              <div className="nav-links">{`Failed ${response}`}</div>
+            )}
           </nav>
         </div>
       </header>
